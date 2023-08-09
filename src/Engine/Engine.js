@@ -1,5 +1,6 @@
 import { Rectangle } from "./Shapes/Rectangle";
 import { Movement } from "./Movement/Movement";
+import { Network } from "./Network/Network";
 
 class Engine {
     constructor() {
@@ -12,6 +13,12 @@ class Engine {
         this._movementEngine = new Movement();
 
         Engine._instance = this;
+
+        this.network = new Network(window.location.host);
+    }
+
+    send(data){
+        this.network.ws.send(JSON.stringify(data));
     }
 
     setDisplay(width, height, scale = 1) {

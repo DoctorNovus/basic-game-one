@@ -8,7 +8,6 @@ export class Rectangle extends Shape {
 
     draw(ctx) {
         ctx.fillStyle = this.color;
-        console.log(this.x, this.y, this.width, this.height);
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }

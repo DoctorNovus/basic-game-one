@@ -16,25 +16,41 @@ let player = new Player(10, 10, 25, 25, "rectangle");
 let rect1 = new Entity(10, 10, 25, 25, "rectangle");
 rect1.setColor("red");
 
-engine.addObject(player);
-engine.addObject(rect1);
+// engine.addObject(player);
+// engine.addObject(rect1);
 
 Movement.instance.on("keydown", (e) => {
     switch (e.key) {
         case "w":
-            player.moveUp();
+            Engine.instance.send({
+                type: "playerUp", data: {
+                    toggle: true
+                }
+            });
             break;
 
         case "a":
-            player.moveLeft();
+            Engine.instance.send({
+                type: "playerLeft", data: {
+                    toggle: true
+                }
+            });
             break;
 
         case "s":
-            player.moveDown();
+            Engine.instance.send({
+                type: "playerDown", data: {
+                    toggle: true
+                }
+            });
             break;
 
         case "d":
-            player.moveRight();
+            Engine.instance.send({
+                type: "playerRight", data: {
+                    toggle: true
+                }
+            });
             break;
     }
 });
@@ -42,19 +58,35 @@ Movement.instance.on("keydown", (e) => {
 Movement.instance.on("keyup", (e) => {
     switch (e.key) {
         case "w":
-            player.stopUp();
+            Engine.instance.send({
+                type: "playerUp", data: {
+                    toggle: false
+                }
+            });
             break;
 
         case "a":
-            player.stopLeft();
+            Engine.instance.send({
+                type: "playerLeft", data: {
+                    toggle: false
+                }
+            });
             break;
 
         case "s":
-            player.stopDown();
+            Engine.instance.send({
+                type: "playerDown", data: {
+                    toggle: false
+                }
+            });
             break;
 
         case "d":
-            player.stopRight();
+            Engine.instance.send({
+                type: "playerRight", data: {
+                    toggle: false
+                }
+            });
             break;
     }
 });
@@ -70,5 +102,3 @@ requestAnimationFrame(Engine.instance.applyGameLoop.bind(engine));
 window.addEventListener("resize", () => {
     engine.resizeDisplay(canvas);
 });
-
-console.log(engine);

@@ -1,7 +1,8 @@
 import Entity from "./Entity";
 
 export default class Player extends Entity {
-    constructor(x, y, width, height, sprite){
+    constructor(id, x, y, width, height, sprite) {
         super(x, y, width, height, sprite);
+        this.id = id;
     }
 }
